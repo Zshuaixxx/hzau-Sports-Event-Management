@@ -20,10 +20,13 @@ console.log(userStore.taken)
           <el-menu-item index="/home/game">
             <span>赛事管理</span>
           </el-menu-item>
-          <!-- <el-menu-item index="/home/voluntee">
-            <el-icon><Promotion /></el-icon>
-            <span>志愿管理</span>
-          </el-menu-item> -->
+          <el-sub-menu index="2">
+            <template #title>
+              <span>报名管理</span>
+            </template>
+            <el-menu-item index="/home/sign">报名文件上传</el-menu-item>
+            <el-menu-item index="/home/player">参赛人员管理</el-menu-item>
+          </el-sub-menu>
           <el-sub-menu index="1">
             <template #title>
               <span>志愿管理</span>
@@ -34,9 +37,6 @@ console.log(userStore.taken)
           </el-sub-menu>
           <el-menu-item index="/home/account">
             <span>账号管理</span>
-          </el-menu-item>
-          <el-menu-item index="/home/sign">
-            <span>赛事报名</span>
           </el-menu-item>
         </el-menu>
       </el-aside>

@@ -40,6 +40,10 @@ const router = createRouter({
         {
           path: '/home/sign',
           component: () => import('@/views/Amd/SignPage.vue')
+        },
+        {
+          path: '/home/player',
+          component: () => import('@/views/Amd/PlayerPage.vue')
         }
       ]
     }
