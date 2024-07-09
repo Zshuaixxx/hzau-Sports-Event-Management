@@ -83,6 +83,8 @@ export const whereEditService = ({ XueYuanName, Message }) => {
 }
 
 //获取运动员信息
-export const usegetPlayerInfo = (gameid) => {
-  return request.get('/game/getplayerinfo', gameid)
+export const usegetPlayerInfo = ({ RaceName }) => {
+  return request.get('/game/getplayerinfo', {
+    RaceName
+  })
 }

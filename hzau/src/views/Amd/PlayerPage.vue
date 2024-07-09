@@ -94,8 +94,8 @@ const playerList = ref([])
 import { usegetPlayerInfo } from '@/api/user'
 //点击查看按钮
 const getplayerinfo = async () => {
-  console.log('发送的运动类别信息：', selectedSubCategory.value.gameid)
-  const res = await usegetPlayerInfo(selectedSubCategory.value.gameid)
+  console.log('发送的运动类别信息：', selectedSubCategory.value)
+  const res = await usegetPlayerInfo({ RaceName: selectedSubCategory.value })
   console.log('返回的运动员信息：', res)
   playerList.value = res.data
 }
