@@ -35,6 +35,9 @@ console.log(userStore.taken)
           <el-menu-item index="/home/account">
             <span>账号管理</span>
           </el-menu-item>
+          <el-menu-item index="/home/sign">
+            <span>赛事报名</span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>

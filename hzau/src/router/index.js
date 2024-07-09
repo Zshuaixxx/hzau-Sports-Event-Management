@@ -36,6 +36,10 @@ const router = createRouter({
         {
           path: '/home/where',
           component: () => import('@/views/Amd/WherePage.vue')
+        },
+        {
+          path: '/home/sign',
+          component: () => import('@/views/Amd/SignPage.vue')
         }
       ]
     }
