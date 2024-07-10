@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+// import { List } from '@element-plus/icons-vue/dist/types'
 //登录接口
 export const userLoginService = ({ AdminPassword, AdminAccount }) => {
   return request.post('/login', { AdminPassword, AdminAccount })
@@ -84,7 +85,7 @@ export const whereEditService = ({ XueYuanName, Message }) => {
 
 //获取运动员信息
 export const usegetPlayerInfo = ({ RaceName }) => {
-  return request.get('/game/getplayerinfo', {
+  return request.post('/game/get', {
     RaceName
   })
 }
@@ -92,4 +93,13 @@ export const usegetPlayerInfo = ({ RaceName }) => {
 //点击分配号码牌
 export const fenpeihaomaServer = () => {
   return request.get('/game/fenpeihaoma')
+}
+
+//点击一键上传运动员成绩
+export const updataGradeServer = (mylist) => {
+  return request.post('/game/grade', mylist, {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  })
 }

@@ -25,7 +25,7 @@ console.log(userStore.taken)
               <span>报名管理</span>
             </template>
             <el-menu-item index="/home/sign">报名文件上传</el-menu-item>
-            <el-menu-item index="/home/player">参赛人员管理</el-menu-item>
+            <el-menu-item index="/home/player">初赛成绩录入</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="1">
             <template #title>

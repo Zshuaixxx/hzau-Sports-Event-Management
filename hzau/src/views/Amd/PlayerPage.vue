@@ -99,6 +99,36 @@ const getplayerinfo = async () => {
   console.log('返回的运动员信息：', res)
   playerList.value = res.data
 }
+//点击一键上传所有运动员成绩
+import { updataGradeServer } from '@/api/user'
+const updataGrade = async () => {
+  // const res = await updataGradeServer({
+  //   RacerName: playerList.value.RacerName,
+  //   XueYuanName: playerList.value.XueYuanName,
+  //   RacerSex: playerList.value.RacerSex,
+  //   HaoMa: playerList.value.HaoMa,
+  //   UserAccount: playerList.value.UserAccount,
+  //   RaceName: playerList.value.RaceName,
+  //   Grade: playerList.value.Grade
+  // })
+  const playersData = playerList.value.map((player) => ({
+    RacerName: player.RacerName,
+    XueYuanName: player.XueYuanName,
+    RacerSex: player.RacerSex,
+    HaoMa: player.HaoMa,
+    UserAccount: player.UserAccount,
+    RaceName: player.RaceName,
+    Grade: player.Grade
+  }))
+  console.log('成绩：',playersData);
+  const res = await updataGradeServer(playersData)
+  console.log('上传成绩接口返回:', res)
+  if (res.data === 0) {
+    ElMessage.error;('成绩录入失败')
+  } else {
+    ElMessage.success('成绩录入'+res.data+'位运动员成绩')
+  }
+}
 </script>
 
 <template>
@@ -126,13 +156,22 @@ const getplayerinfo = async () => {
       />
     </el-select>
     <el-button type="primary" @click="getplayerinfo()">查询</el-button>
+    <el-button type="primary" @click="updataGrade()"
+      >一键上传所有运动员成绩</el-button
+    >
+    <span>提示您录入时，所有成绩距离以米为单位，时间以秒为单位</span>
     <el-table :data="playerList" style="width: 100%">
       <el-table-column prop="RacerName" label="姓名" width="80" />
       <el-table-column prop="XueYuanName" label="学院" />
       <el-table-column prop="RacerSex" label="性别" width="110" />
       <el-table-column prop="HaoMa" label="号码" />
       <el-table-column prop="UserAccount" label="学号" />
-      <el-table-column prop="RaceName" label="项目" />
+      <!-- <el-table-column prop="RaceName" label="项目" /> -->
+      <el-table-column prop="Grade" label="成绩">
+        <template v-slot:default="scope">
+          <el-input v-model="scope.row.Grade" />
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
