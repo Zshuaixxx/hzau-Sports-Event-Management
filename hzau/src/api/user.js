@@ -88,3 +88,8 @@ export const usegetPlayerInfo = ({ RaceName }) => {
     RaceName
   })
 }
+
+// //获取自动分配的号码牌
+// export const usegetHaoma = () => {
+//   return request.get('/game/gethaoma')
+// }

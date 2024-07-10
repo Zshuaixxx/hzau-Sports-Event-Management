@@ -99,6 +99,14 @@ const getplayerinfo = async () => {
   console.log('返回的运动员信息：', res)
   playerList.value = res.data
 }
+//点击获取号码牌
+// import { usegetHaoma } from '@/api/user'
+const gethaoma = async () => {
+  console.log('发送号码牌请求')
+  const res = await usegetPlayerInfo({ RaceName: selectedSubCategory.value })
+  console.log('返回的号码牌信息：', res)
+  playerList.value = res.data
+}
 </script>
 
 <template>
@@ -126,7 +134,9 @@ const getplayerinfo = async () => {
       />
     </el-select>
     <el-button type="primary" @click="getplayerinfo()">查询</el-button>
-    <el-button>一键自动分配运动员号码牌</el-button>
+    <el-button type="primary" @click="gethaoma()"
+      >一键自动分配运动员号码牌</el-button
+    >
     <el-table :data="playerList" style="width: 100%">
       <el-table-column prop="RacerName" label="姓名" width="80" />
       <el-table-column prop="XueYuanName" label="学院" />
