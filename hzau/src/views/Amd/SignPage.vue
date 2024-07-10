@@ -24,6 +24,18 @@ const beforeUpload = (file) => {
   }
   return isLt2M // 返回 true 表示允许上传，返回 false 则阻止上传
 }
+
+//点击分配号码牌
+import { fenpeihaomaServer } from '@/api/user'
+const gethaoma = async () => {
+  const res = await fenpeihaomaServer()
+  console.log('分配号码牌结果：', res)
+  if (res.data) {
+    ElMessage.success('分配号码牌成功')
+  } else {
+    ElMessage.error('分配号码牌失败')
+  }
+}
 </script>
 
 <template>
@@ -44,4 +56,7 @@ const beforeUpload = (file) => {
       <div class="el-upload__tip">文件大小不能超过 50MB</div>
     </template>
   </el-upload>
+  <el-button type="primary" @click="gethaoma()"
+    >点击一键自动分配运动员号码牌</el-button
+  >
 </template>
