@@ -122,7 +122,7 @@ const getplayerinfo = async () => {
         v-for="subCategory in subCategories"
         :key="subCategory.id"
         :label="subCategory.name"
-        :value="subCategory.id"
+        :value="subCategory.gameid"
       />
     </el-select>
     <el-button type="primary" @click="getplayerinfo()">查询</el-button>

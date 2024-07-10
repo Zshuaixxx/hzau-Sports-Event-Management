@@ -1,6 +1,5 @@
 <script setup>
 import { UploadFilled } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
 // import { ref } from 'vue'
 const handleSuccess = (response, file, fileList) => {
   console.log('file', file)
@@ -30,11 +29,12 @@ import { fenpeihaomaServer } from '@/api/user'
 const gethaoma = async () => {
   const res = await fenpeihaomaServer()
   console.log('分配号码牌结果：', res)
-  if (res.data) {
-    ElMessage.success('分配号码牌成功')
-  } else {
-    ElMessage.error('分配号码牌失败')
-  }
+  // if (res.data === 1) {
+  //   ElMessage.success('分配号码牌成功')
+  // } else {
+  //   ElMessage.error('分配号码牌失败')
+  // }
+  ElMessage.success('成功分配' + res.data + '名运动员号码牌')
 }
 </script>
 
