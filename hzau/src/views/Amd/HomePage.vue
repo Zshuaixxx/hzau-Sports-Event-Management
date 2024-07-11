@@ -25,7 +25,7 @@ console.log(userStore.taken)
               <span>报名管理</span>
             </template>
             <el-menu-item index="/home/sign">报名文件上传</el-menu-item>
-            <el-menu-item index="/home/player">初赛成绩录入</el-menu-item>
+            <!-- <el-menu-item index="/home/player">初赛成绩录入</el-menu-item> -->
           </el-sub-menu>
           <el-sub-menu index="1">
             <template #title>
@@ -38,6 +38,13 @@ console.log(userStore.taken)
           <el-menu-item index="/home/account">
             <span>账号管理</span>
           </el-menu-item>
+          <el-sub-menu index="2">
+            <template #title>
+              <span>成绩录入</span>
+            </template>
+            <el-menu-item index="/home/player">初赛成绩录入</el-menu-item>
+            <el-menu-item index="/home/lastgame">决赛成绩录入</el-menu-item>
+          </el-sub-menu>
         </el-menu>
       </el-aside>
       <el-main>

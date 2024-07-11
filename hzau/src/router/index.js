@@ -44,6 +44,10 @@ const router = createRouter({
         {
           path: '/home/player',
           component: () => import('@/views/Amd/PlayerPage.vue')
+        },
+        {
+          path: '/home/lastgame',
+          component: () => import('@/views/Amd/LastgamePage.vue')
         }
       ]
     }

@@ -99,7 +99,15 @@ export const fenpeihaomaServer = () => {
 export const updataGradeServer = (mylist) => {
   return request.post('/game/grade', mylist, {
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     }
+  })
+}
+
+//点击上传晋级人数
+export const usegetlastPlayerInfo = ({ RaceName, Sum }) => {
+  return request.post('/game/lastplayer', {
+    RaceName,
+    Sum
   })
 }
