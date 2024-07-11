@@ -2,10 +2,7 @@ package org.example.hzau.java.Mapper;
 
 import lombok.Data;
 import org.apache.ibatis.annotations.*;
-import org.example.hzau.java.Entity.Race;
-import org.example.hzau.java.Entity.RaceMessage;
-import org.example.hzau.java.Entity.RaceResult;
-import org.example.hzau.java.Entity.Racer;
+import org.example.hzau.java.Entity.*;
 
 import java.util.List;
 
@@ -51,4 +48,12 @@ public interface RaceMapper {
 
     @Update("UPDATE Racer set Grade=#{Grade} where RaceName=#{RaceName} and RacerName=#{RacerName} and UserAccount=#{UserAccount} and HaoMa=#{HaoMa}")
     int UpdateRaceGrade(Racer racer);
+    @Update("UPDATE Racer set LGrade=#{LGrade} where RaceName=#{RaceName} and RacerName=#{RacerName} and UserAccount=#{UserAccount} and HaoMa=#{HaoMa}")
+    int UpdateRaceGrade1(Racer racer);
+
+
+    @Select("SELECT * FROM racer WHERE RaceName = #{RaceName} ORDER BY grade ASC;")
+    List<Racer> Winner(Winner winner);
+    @Select("SELECT * FROM racer WHERE RaceName = #{RaceName} ORDER BY grade DESC;")
+    List<Racer> Winner2(Winner winner);
 }

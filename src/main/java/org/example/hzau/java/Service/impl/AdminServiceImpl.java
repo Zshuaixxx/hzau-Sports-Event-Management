@@ -90,4 +90,22 @@ public class AdminServiceImpl implements AdminService {
         }
     return sum;
     }
+
+    @Override
+    public List<Racer> Winner(Winner winner){
+        return raceMapper.Winner(winner);
+    }
+    @Override
+    public List<Racer> Winner2(Winner winner){
+        return raceMapper.Winner2(winner);
+    }
+    @Override
+    public int UpdateRaceGrade2(List<Racer> racers){
+        int i=0;
+        int sum=racers.size();
+        for(i=0;i<sum;i++){
+            raceMapper.UpdateRaceGrade1(racers.get(i));
+        }
+        return sum;
+    }
 }

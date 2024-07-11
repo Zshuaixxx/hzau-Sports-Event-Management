@@ -29,4 +29,10 @@ public interface AdminService {
     int UpdateRacer(Racer race);
 
     int UpdateRaceGrade(List<Racer> racers);
+    int UpdateRaceGrade2(List<Racer> racers);
+
+
+    List<Racer> Winner(Winner winner);
+
+    List<Racer> Winner2(Winner winner);
 }

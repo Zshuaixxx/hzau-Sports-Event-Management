@@ -11,4 +11,5 @@ public class Racer {
     public String UserAccount;
     public String RaceName;
     public double Grade;
+    public double LGrade;
 }

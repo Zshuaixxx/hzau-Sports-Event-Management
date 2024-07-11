@@ -1,4 +1,5 @@
 package org.example.hzau.java.Controller;
+import java.util.*;
 
 import org.apache.poi.ss.formula.atp.Switch;
 import org.example.hzau.java.Entity.*;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
-import java.util.Iterator;
 
 @RestController
 @RequestMapping("/admin")
@@ -289,5 +289,36 @@ public class AdminController {
 
         return adminService.UpdateRaceGrade(racers);
         
+    }
+
+    /*管理员通过输入的人数来确定晋级的人选，sql语句按成绩排序*/
+    @PostMapping("/game/lastplayer")
+    public List<Racer> Winner(@RequestBody Winner winner){
+        int sum= winner.getSum();
+        String RaceName=winner.getRaceName();
+        Set<String> raceNames = new HashSet<>(Arrays.asList(
+                "50mB", "50mG", "100mB", "100mG", "200mB", "200mG",
+                "400mB", "400mG", "800mG", "800mB", "1000mB", "1000mG",
+                "1500mB", "1500mG", "2000mB", "2000mG", "5000mB", "5000mG",
+                "20-50mB", "20-50mG", "4-100mB", "4-100mG"
+        ));
+
+        if(raceNames.contains(RaceName)) {
+            List<Racer> mylist= adminService.Winner(winner);
+            mylist=mylist.subList(0,sum);
+            return mylist;
+        }else{
+            List<Racer> mylist= adminService.Winner2(winner);
+            System.out.println(mylist);
+            mylist=mylist.subList(0,sum);
+            return mylist;
+
+        }
+    }
+    @PostMapping("/game/lastgrade")
+    public int UpdateGrade1(@RequestBody List<Racer> racers){
+        System.out.println(racers);
+        return adminService.UpdateRaceGrade2(racers);
+
     }
 }
