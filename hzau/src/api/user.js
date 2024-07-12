@@ -125,3 +125,11 @@ export const updatalastGradeServer = (mylist) => {
 export const getzuhaoServer = () => {
   return request.post('/game/zuhao')
 }
+
+//点击分配决赛跑道号
+export const getlasthaomaServer = ({ RaceName, Sum }) => {
+  return request.post('/game/lasthaoma', {
+    RaceName,
+    Sum
+  })
+}

@@ -19,7 +19,8 @@ const beforeUpload = (file) => {
   console.log('file', file)
   const isLt2M = file.size / 1024 / 1024 < 50
   if (!isLt2M) {
-    this.$message.error('上传文件大小不能超过 50MB!')
+    console.log('上传文件大小不能超过 50MB!')
+    ElMessage.error('上传文件大小不能超过 50MB!')
   }
   return isLt2M // 返回 true 表示允许上传，返回 false 则阻止上传
 }
@@ -38,7 +39,6 @@ const gethaoma = async () => {
 }
 //点击一键为所有运动员分配组号和跑道号
 import { getzuhaoServer } from '@/api/user'
-import { ElMessage } from 'element-plus'
 const getzuhao = async () => {
   const res = await getzuhaoServer()
   console.log('返回的运动员组号信息：', res)
@@ -51,7 +51,7 @@ const getzuhao = async () => {
 </script>
 
 <template>
-  <div>赛事报名</div>
+  <h3>赛事报名:上传报名文件到下方即可</h3>
   <el-upload
     class="upload-demo"
     drag

@@ -59,6 +59,7 @@ console.log('用户token:', userStore.token)
 .el-aside {
   height: 100vh;
   background-color: #000000;
+  float: left;
   position: sticky;
   top: 0px;
 }

@@ -94,6 +94,15 @@ const playerList = ref([])
 import { usegetlastPlayerInfo } from '@/api/user'
 //点击查看按钮
 const getplayerinfo = async () => {
+  console.log(manygolast.value)
+  console.log(typeof manygolast.value)
+  if (manygolast.value == 0) {
+    ElMessage.error('请确认晋级人数输入正确：')
+  }
+  if (typeof manygolast.value !== 'number') {
+    ElMessage.error('晋级人数请输入数字')
+    return
+  }
   console.log('决赛页面发送的运动类别信息：', {
     RaceName: selectedSubCategory.value,
     Sum: manygolast.value
@@ -109,6 +118,7 @@ const getplayerinfo = async () => {
 const manygolast = ref(0)
 //点击一键上传所有运动员决赛成绩
 import { updatalastGradeServer } from '@/api/user'
+import { ElMessage } from 'element-plus'
 const updataGrade = async () => {
   // const res = await updataGradeServer({
   //   RacerName: playerList.value.RacerName,
@@ -139,38 +149,63 @@ const updataGrade = async () => {
     ElMessage.success('成绩录入' + res.data + '位运动员决赛成绩')
   }
 }
+//点击一键分配决赛跑道号
+import { getlasthaomaServer } from '@/api/user'
+const getlasthaoma = async () => {
+  const res = await getlasthaomaServer({
+    RaceName: selectedSubCategory.value,
+    Sum: manygolast.value
+  })
+  console.log('分配决赛跑道号结果：', res)
+  if (res.data === 1) {
+    getplayerinfo()
+  } else {
+    ElMessage.error('分配决赛跑道号失败')
+  }
+}
 </script>
 
 <template>
   <div>
     <!-- 运动类别 -->
-    <el-select
-      v-model="selectedCategory"
-      placeholder="请选择运动类别"
-      @change="updateSubCategories"
-    >
-      <el-option
-        v-for="category in categories"
-        :key="category.id"
-        :label="category.name"
-        :value="category.id"
-      />
-    </el-select>
+    <div class="leibie">
+      <span>运动类别: </span>
+      <el-select
+        v-model="selectedCategory"
+        placeholder="请选择运动类别"
+        @change="updateSubCategories"
+      >
+        <el-option
+          v-for="category in categories"
+          :key="category.id"
+          :label="category.name"
+          :value="category.id"
+        />
+      </el-select>
+    </div>
     <!-- 详细运动项目 -->
-    <el-select v-model="selectedSubCategory" placeholder="请选择运动项目">
-      <el-option
-        v-for="subCategory in subCategories"
-        :key="subCategory.id"
-        :label="subCategory.name"
-        :value="subCategory.gameid"
-      />
-    </el-select>
-    <span>请输入该项目晋级决赛人数:</span><el-input v-model="manygolast" />
+    <div class="xiangmu">
+      <span>运动项目: </span>
+      <el-select v-model="selectedSubCategory" placeholder="请选择运动项目">
+        <el-option
+          v-for="subCategory in subCategories"
+          :key="subCategory.id"
+          :label="subCategory.name"
+          :value="subCategory.gameid"
+        />
+      </el-select>
+    </div>
+    <div class="renshu">
+      <span>请输入该项目晋级决赛人数:</span
+      ><el-input v-model="manygolast" type="number" />
+    </div>
     <el-button type="primary" @click="getplayerinfo()">查询</el-button>
     <el-button type="primary" @click="updataGrade()"
       >一键上传决赛运动员成绩</el-button
     >
-    <span>提示您录入时，所有成绩距离以米为单位，时间以秒为单位</span>
+    <span class="tishi"
+      >提示您录入时，所有成绩距离以米为单位，时间以秒为单位</span
+    >
     <el-table :data="playerList" style="width: 100%">
       <el-table-column prop="RacerName" label="姓名" width="80" />
       <el-table-column prop="XueYuanName" label="学院" />
@@ -187,5 +222,28 @@ const updataGrade = async () => {
         </template>
       </el-table-column>
     </el-table>
+    <el-button type="primary" @click="getlasthaoma()"
+      >一键分配决赛跑道号</el-button
+    >
   </div>
 </template>
+
+<style>
+.tishi {
+  color: red;
+}
+.leibie,
+.xiangmu {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  line-height: 32px;
+  margin-bottom: 10px;
+}
+.renshu {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  margin-bottom: 15px;
+}
+</style>

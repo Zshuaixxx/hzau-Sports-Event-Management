@@ -124,8 +124,7 @@ const updataGrade = async () => {
   const res = await updataGradeServer(playersData)
   console.log('上传成绩接口返回:', res)
   if (res.data === 0) {
-    ElMessage.error
-    ;('成绩录入失败')
+    ElMessage.error('成绩录入失败')
   } else {
     ElMessage.success('成绩录入' + res.data + '位运动员成绩')
   }
@@ -135,27 +134,33 @@ const updataGrade = async () => {
 <template>
   <div>
     <!-- 运动类别 -->
-    <el-select
-      v-model="selectedCategory"
-      placeholder="请选择运动类别"
-      @change="updateSubCategories"
-    >
-      <el-option
-        v-for="category in categories"
-        :key="category.id"
-        :label="category.name"
-        :value="category.id"
-      />
-    </el-select>
+    <div class="leibie">
+      <span>运动类别: </span>
+      <el-select
+        v-model="selectedCategory"
+        placeholder="请选择运动类别"
+        @change="updateSubCategories"
+      >
+        <el-option
+          v-for="category in categories"
+          :key="category.id"
+          :label="category.name"
+          :value="category.id"
+        />
+      </el-select>
+    </div>
     <!-- 详细运动项目 -->
-    <el-select v-model="selectedSubCategory" placeholder="请选择运动项目">
-      <el-option
-        v-for="subCategory in subCategories"
-        :key="subCategory.id"
-        :label="subCategory.name"
-        :value="subCategory.gameid"
-      />
-    </el-select>
+    <div class="xiangmu">
+      <span>运动项目: </span>
+      <el-select v-model="selectedSubCategory" placeholder="请选择运动项目">
+        <el-option
+          v-for="subCategory in subCategories"
+          :key="subCategory.id"
+          :label="subCategory.name"
+          :value="subCategory.gameid"
+        />
+      </el-select>
+    </div>
     <el-button type="primary" @click="getplayerinfo()">查询</el-button>
     <el-button type="primary" @click="updataGrade()"
       >一键上传所有运动员成绩</el-button
@@ -184,5 +189,13 @@ const updataGrade = async () => {
 <style>
 .tishi {
   color: red;
+}
+.leibie,
+.xiangmu {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  line-height: 32px;
+  margin-bottom: 10px;
 }
 </style>

@@ -34,7 +34,7 @@ const handleSubmit = async (row) => {
 <template>
   <!-- 提供可选择的时间 -->
   <el-table :data="twoday" border style="width: 100%">
-    <el-table-column prop="text" label="志愿时间" width="180">
+    <el-table-column prop="text" label="志愿时间" width="250">
       <template v-slot:default="scope">
         <el-input v-model="scope.row.text" />
       </template>
