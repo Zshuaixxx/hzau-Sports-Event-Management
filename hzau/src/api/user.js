@@ -111,3 +111,17 @@ export const usegetlastPlayerInfo = ({ RaceName, Sum }) => {
     Sum
   })
 }
+
+//上传决赛成绩
+export const updatalastGradeServer = (mylist) => {
+  return request.post('/game/lastgrade', mylist, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+//点击为运动员分配跑到
+export const getzuhaoServer = () => {
+  return request.post('/game/zuhao')
+}

@@ -36,6 +36,18 @@ const gethaoma = async () => {
   // }
   ElMessage.success('成功分配' + res.data + '名运动员号码牌')
 }
+//点击一键为所有运动员分配组号和跑道号
+import { getzuhaoServer } from '@/api/user'
+import { ElMessage } from 'element-plus'
+const getzuhao = async () => {
+  const res = await getzuhaoServer()
+  console.log('返回的运动员组号信息：', res)
+  if (res.data === 1) {
+    ElMessage.success('分配组号成功，可前往成绩录入界面查询')
+  } else {
+    ElMessage.error('分配失败')
+  }
+}
 </script>
 
 <template>
@@ -58,5 +70,8 @@ const gethaoma = async () => {
   </el-upload>
   <el-button type="primary" @click="gethaoma()"
     >点击一键自动分配运动员号码牌</el-button
+  >
+  <el-button type="primary" @click="getzuhao()"
+    >点击一键为所有运动员分配组号和跑道号</el-button
   >
 </template>

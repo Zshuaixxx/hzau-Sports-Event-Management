@@ -120,13 +120,14 @@ const updataGrade = async () => {
     RaceName: player.RaceName,
     Grade: player.Grade
   }))
-  console.log('成绩：',playersData);
+  console.log('成绩：', playersData)
   const res = await updataGradeServer(playersData)
   console.log('上传成绩接口返回:', res)
   if (res.data === 0) {
-    ElMessage.error;('成绩录入失败')
+    ElMessage.error
+    ;('成绩录入失败')
   } else {
-    ElMessage.success('成绩录入'+res.data+'位运动员成绩')
+    ElMessage.success('成绩录入' + res.data + '位运动员成绩')
   }
 }
 </script>
@@ -159,13 +160,17 @@ const updataGrade = async () => {
     <el-button type="primary" @click="updataGrade()"
       >一键上传所有运动员成绩</el-button
     >
-    <span>提示您录入时，所有成绩距离以米为单位，时间以秒为单位</span>
+    <span class="tishi"
+      >提示您录入时，所有成绩距离以米为单位，时间以秒为单位</span
+    >
     <el-table :data="playerList" style="width: 100%">
       <el-table-column prop="RacerName" label="姓名" width="80" />
       <el-table-column prop="XueYuanName" label="学院" />
       <el-table-column prop="RacerSex" label="性别" width="110" />
       <el-table-column prop="HaoMa" label="号码" />
       <el-table-column prop="UserAccount" label="学号" />
+      <el-table-column prop="GGroup" label="组号" />
+      <el-table-column prop="Ftrack" label="跑道号" />
       <!-- <el-table-column prop="RaceName" label="项目" /> -->
       <el-table-column prop="Grade" label="成绩">
         <template v-slot:default="scope">
@@ -175,3 +180,9 @@ const updataGrade = async () => {
     </el-table>
   </div>
 </template>
+
+<style>
+.tishi {
+  color: red;
+}
+</style>

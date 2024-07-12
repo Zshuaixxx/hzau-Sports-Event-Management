@@ -1,7 +1,7 @@
 <script setup>
 import { useUserStore } from '@/stores'
 const userStore = useUserStore()
-console.log(userStore.taken)
+console.log('用户token:', userStore.token)
 </script>
 <template>
   <div class="common-layout">
@@ -9,7 +9,7 @@ console.log(userStore.taken)
       <el-aside width="200px" class="el-aside">
         <div class="el-aside__logo"></div>
         <!-- 个人信息 -->
-        <span class="showtaken">个人信息：{{ userStore.taken }}</span>
+        <span class="showtaken">个人信息：{{ userStore.token }}</span>
         <el-menu
           active-text-color="#ffd04b"
           background-color="#000000"
@@ -35,9 +35,9 @@ console.log(userStore.taken)
             <el-menu-item index="/home/time">时间管理</el-menu-item>
             <el-menu-item index="/home/where">地点管理</el-menu-item>
           </el-sub-menu>
-          <el-menu-item index="/home/account">
+          <!-- <el-menu-item index="/home/account">
             <span>账号管理</span>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-sub-menu index="2">
             <template #title>
               <span>成绩录入</span>
@@ -59,6 +59,8 @@ console.log(userStore.taken)
 .el-aside {
   height: 100vh;
   background-color: #000000;
+  position: sticky;
+  top: 0px;
 }
 .el-aside__logo {
   width: 100%;

@@ -108,7 +108,7 @@ const getplayerinfo = async () => {
 //晋级决赛的人数
 const manygolast = ref(0)
 //点击一键上传所有运动员决赛成绩
-import { updataGradeServer } from '@/api/user'
+import { updatalastGradeServer } from '@/api/user'
 const updataGrade = async () => {
   // const res = await updataGradeServer({
   //   RacerName: playerList.value.RacerName,
@@ -130,7 +130,7 @@ const updataGrade = async () => {
     LGrade: player.LGrade
   }))
   console.log('成绩：', playersData)
-  const res = await updataGradeServer(playersData)
+  const res = await updatalastGradeServer(playersData)
   console.log('上传决赛成绩接口返回:', res)
   if (res.data === 0) {
     ElMessage.error
@@ -178,10 +178,12 @@ const updataGrade = async () => {
       <el-table-column prop="HaoMa" label="号码" />
       <el-table-column prop="UserAccount" label="学号" />
       <el-table-column prop="Grade" label="初赛成绩" />
+      <el-table-column prop="Strack" label="跑道号" />
+
       <!-- <el-table-column prop="RaceName" label="项目" /> -->
       <el-table-column prop="LGrade" label="决赛成绩">
         <template v-slot:default="scope">
-          <el-input v-model="scope.row.Grade" />
+          <el-input v-model="scope.row.LGrade" />
         </template>
       </el-table-column>
     </el-table>
