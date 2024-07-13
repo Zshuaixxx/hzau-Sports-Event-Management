@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -86,5 +89,28 @@ public class UserController {
     @PostMapping("/User/Select/BaoMing")
     public List<Volunteer> selectBaoMing(@RequestBody Volunteer volunteer){
         return userServiceimpl.SelectVolunteer(volunteer.getUserAccount());
+    }
+    /*用户小程序界面展示每个项目比赛的结果（初赛，决赛）*/
+    @PostMapping("/Race/Result1")
+    public List<Racer> SelectRaceResult(@RequestBody Race race){
+        if(race.RaceLevel.equals("初赛")){
+        return userServiceimpl.SelectRacer(race);}else{
+            System.out.println("sssss");
+            String RaceName=race.getRaceName();
+            Set<String> raceNames = new HashSet<>(Arrays.asList(
+                    "50mB", "50mG", "100mB", "100mG", "200mB", "200mG",
+                    "400mB", "400mG", "800mG", "800mB", "1000mB", "1000mG",
+                    "1500mB", "1500mG", "2000mB", "2000mG", "5000mB", "5000mG",
+                    "20-50mB", "20-50mG", "4-100mB", "4-100mG"
+            ));
+            if(raceNames.contains(RaceName)){
+                List<Racer> racers= userServiceimpl.SelectRacer1(race);
+                System.out.println(racers);
+                return racers;
+            }else {
+                System.out.println(race);
+                return userServiceimpl.SelectRacer2(race);
+            }
+        }
     }
 }

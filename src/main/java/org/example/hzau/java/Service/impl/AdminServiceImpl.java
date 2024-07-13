@@ -108,4 +108,15 @@ public class AdminServiceImpl implements AdminService {
         }
         return sum;
     }
+    @Override
+    public int Update(Racer racer){
+        return raceMapper.Update(racer);
+    }
+    @Override
+    public List<Racer> SuccessGroup(Race race){
+        return raceMapper.Winner4(race);
+    }
+    public int UpdateRacer2(Racer racer){
+        return raceMapper.UpdateRaceGrade2(racer);
+    }
 }

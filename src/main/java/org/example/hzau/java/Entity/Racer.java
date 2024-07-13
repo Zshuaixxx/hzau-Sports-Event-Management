@@ -12,4 +12,7 @@ public class Racer {
     public String RaceName;
     public double Grade;
     public double LGrade;
+    public int GGroup;
+    public int Ftrack;
+    public int Strack;
 }

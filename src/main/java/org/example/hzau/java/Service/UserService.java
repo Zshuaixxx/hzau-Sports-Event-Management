@@ -1,9 +1,6 @@
 package org.example.hzau.java.Service;
 
-import org.example.hzau.java.Entity.SeatMessage;
-import org.example.hzau.java.Entity.User;
-import org.example.hzau.java.Entity.Volunteer;
-import org.example.hzau.java.Entity.VolunteerTime;
+import org.example.hzau.java.Entity.*;
 
 import java.util.List;
 
@@ -20,4 +17,9 @@ public interface UserService {
     int VolunteerJoin(Volunteer user);
 
     List<Volunteer> SelectVolunteer(String UserAccount);
+
+    List<Racer> SelectRacer(Race race);
+    List<Racer> SelectRacer1(Race race);
+    List<Racer> SelectRacer2(Race race);
+
 }

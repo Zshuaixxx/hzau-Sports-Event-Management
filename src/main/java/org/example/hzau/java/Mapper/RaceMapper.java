@@ -45,7 +45,8 @@ public interface RaceMapper {
     List<Racer> SelectRacer1();
     @Update("update Racer set HaoMa=#{HaoMa} where RaceName=#{RaceName} and RacerName=#{RacerName}")
     int UpdateRacer(Racer racer);
-
+    @Update("update Racer set GGroup=#{GGroup},Ftrack=#{Ftrack} where RacerName=#{RacerName} and HaoMa=#{HaoMa}" )
+    int Update(Racer racer);
     @Update("UPDATE Racer set Grade=#{Grade} where RaceName=#{RaceName} and RacerName=#{RacerName} and UserAccount=#{UserAccount} and HaoMa=#{HaoMa}")
     int UpdateRaceGrade(Racer racer);
     @Update("UPDATE Racer set LGrade=#{LGrade} where RaceName=#{RaceName} and RacerName=#{RacerName} and UserAccount=#{UserAccount} and HaoMa=#{HaoMa}")
@@ -56,4 +57,20 @@ public interface RaceMapper {
     List<Racer> Winner(Winner winner);
     @Select("SELECT * FROM racer WHERE RaceName = #{RaceName} ORDER BY grade DESC;")
     List<Racer> Winner2(Winner winner);
+    @Insert("INSERT INTO lracer (RacerName,RacerSex,XueYuanName,HaoMa,UserAccount,RaceName) VALUES (#{RacerName},#{RacerSex},#{XueYuanName},#{HaoMa},#{UserAccount},#{RaceName}")
+    int InsertLracer(Racer racer);
+    @Select("SELECT * FROM racer WHERE RaceName = #{RaceName} and LGrade is not null ORDER BY LGrade DESC;")
+    List<Racer> Winner3(Race race);
+    @Select("SELECT * FROM racer WHERE RaceName = #{RaceName} and LGrade is not null ORDER BY LGrade ASC;")
+    List<Racer> Winner4(Race race);
+
+
+    @Select("SELECT * FROM racer WHERE RaceName = #{RaceName} and LGrade is not null ORDER BY LGrade ASC;")
+    List<Racer> Winner5(Racer racer);
+
+    @Update("UPDATE Racer set Strack=#{Strack} where RaceName=#{RaceName} and RacerName=#{RacerName} and UserAccount=#{UserAccount} and HaoMa=#{HaoMa}")
+    int UpdateRaceGrade2(Racer racer);
+
+
+
 }

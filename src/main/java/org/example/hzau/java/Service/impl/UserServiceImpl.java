@@ -62,4 +62,17 @@ public class UserServiceImpl implements org.example.hzau.java.Service.UserServic
         return volunteerMapper.SelectVolunteer1(UserAccount);
     }
 
+
+    @Override
+    public List<Racer> SelectRacer(Race race){
+        return raceMapper.SelectRacer(race.RaceName);
+    }
+    @Override
+    public List<Racer> SelectRacer1(Race race){
+        return raceMapper.Winner4(race);
+    }
+    @Override
+    public List<Racer> SelectRacer2(Race race){
+        return raceMapper.Winner3(race);
+    }
 }

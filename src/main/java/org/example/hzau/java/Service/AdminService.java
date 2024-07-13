@@ -35,4 +35,8 @@ public interface AdminService {
     List<Racer> Winner(Winner winner);
 
     List<Racer> Winner2(Winner winner);
+
+    int Update(Racer racer);
+
+    List SuccessGroup(Race race);
 }
