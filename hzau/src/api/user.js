@@ -133,3 +133,17 @@ export const getlasthaomaServer = ({ RaceName, Sum }) => {
     Sum
   })
 }
+
+//获取志愿地点信息
+export const voluntplaceService = () => {
+  return request.post('/volunteer/place')
+}
+//点击删除志愿地点
+export const placedeleteService = (place) => {
+  return request.post(`/volunteer/deleteplace/${place}`)
+}
+
+//点击添加志愿地点
+export const addplaceService = (newplace) => {
+  return request.post(`/volunteer/deleteplace/${newplace}`)
+}

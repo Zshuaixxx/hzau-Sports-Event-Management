@@ -152,6 +152,10 @@ const updataGrade = async () => {
 //点击一键分配决赛跑道号
 import { getlasthaomaServer } from '@/api/user'
 const getlasthaoma = async () => {
+  console.log('分配决赛跑道号接口发送参数', {
+    RaceName: selectedSubCategory.value,
+    Sum: manygolast.value
+  })
   const res = await getlasthaomaServer({
     RaceName: selectedSubCategory.value,
     Sum: manygolast.value

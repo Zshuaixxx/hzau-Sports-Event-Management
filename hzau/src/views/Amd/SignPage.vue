@@ -22,7 +22,14 @@ const beforeUpload = (file) => {
     console.log('上传文件大小不能超过 50MB!')
     ElMessage.error('上传文件大小不能超过 50MB!')
   }
-  return isLt2M // 返回 true 表示允许上传，返回 false 则阻止上传
+  const isExcelFile = /\.(xls|xlsx)$/.test(file.name)
+  console.log('是否为Excel文件:', isExcelFile)
+  if (!isExcelFile) {
+    ElMessage.error('请上传 Excel 报名文件！')
+    return false
+  }
+  // return true;
+  return isLt2M && isExcelFile // 返回 true 表示允许上传，返回 false 则阻止上传
 }
 
 //点击分配号码牌
@@ -57,6 +64,7 @@ const getzuhao = async () => {
     drag
     action="http://localhost:80/admin/upload"
     multiple
+    accept=".xls .xlsx"
     :show-file-list="true"
     :on-success="handleSuccess"
     :on-error="handleError"
