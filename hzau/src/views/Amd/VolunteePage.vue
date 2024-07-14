@@ -1,15 +1,25 @@
 <script setup>
 import { ref } from 'vue'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { volunteerInfoService, volunteerEditService } from '@/api/user'
 import { ElMessage } from 'element-plus'
 
 //志愿者数据
 const volunteerlist = ref([])
 //志愿地点信息
+// const voluntplace = ref([])
+// const voluntplacetemp = ref(voluntplace.value.map((item) => ({ locationInfo: item })))
+// 定义响应式引用
 const voluntplace = ref([])
-const voluntplacetemp = ref(
-  voluntplace.value.map((item) => ({ locationInfo: item }))
+const voluntplacetemp = ref([])
+
+// 使用watch监听voluntplace的变化
+watch(
+  voluntplace,
+  (newVal) => {
+    voluntplacetemp.value = newVal.map((item) => ({ locationInfo: item }))
+  },
+  { deep: true }
 )
 //进入页面自动发请求获取数据
 onMounted(() => {
@@ -85,6 +95,7 @@ const saveEdit = async () => {
 </script>
 
 <template>
+  <h4>志愿地点信息：</h4>
   <el-table :data="voluntplacetemp" border style="width: 100%">
     <el-table-column prop="locationInfo" label="志愿地点信息" />
     <el-table-column fixed="right" min-width="120" label="操作">
@@ -95,9 +106,12 @@ const saveEdit = async () => {
       </template>
     </el-table-column>
   </el-table>
-  <el-button type="primary" size="small" @click="addVoluntPlace()"
-    >添加志愿地点</el-button
-  >
+  <div class="add_box">
+    <el-button type="primary" size="big" @click="addVoluntPlace()" class="add"
+      >添加志愿地点</el-button
+    >
+  </div>
+  <h4>志愿人员管理：</h4>
   <el-table :data="volunteerlist" border style="width: 100%">
     <el-table-column prop="UserAccount" label="账号" width="180" />
     <el-table-column prop="UserName" label="姓名" />
@@ -111,7 +125,7 @@ const saveEdit = async () => {
       <template v-slot:default="scope">
         <el-select v-model="scope.row.UserMessage" placeholder="选择志愿地点">
           <el-option
-            v-for="item in voluntplace.value"
+            v-for="item in voluntplace"
             :key="item"
             :label="item"
             :value="item"
@@ -148,3 +162,13 @@ const saveEdit = async () => {
     </template>
   </el-dialog>
 </template>
+
+<style>
+.add_box {
+  display: flex;
+  justify-content: center;
+}
+.add {
+  margin: 20px;
+}
+</style>

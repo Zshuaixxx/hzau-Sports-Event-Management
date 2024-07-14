@@ -36,7 +36,7 @@ const handleEdit = async (row) => {
 <template>
   <el-table :data="placeData" border style="width: 100%">
     <el-table-column prop="XueYuanName" label="学院名称" width="180" />
-    <el-table-column prop="Message" label="志愿地点信息" width="180">
+    <el-table-column prop="Message" label="志愿地点信息" width="360">
       <!-- 输入志愿地点 -->
       <template v-slot:default="scope">
         <el-input v-model="scope.row.Message" />

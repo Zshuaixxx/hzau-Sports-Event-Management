@@ -116,6 +116,7 @@ const saveEdit = async () => {
 </script>
 
 <template>
+  <h3>赛事信息：</h3>
   <el-table :data="gamelist" border style="width: 100%">
     <el-table-column prop="RaceName" label="比赛名称" width="180" />
     <el-table-column prop="RaceLevel" label="比赛级别" />

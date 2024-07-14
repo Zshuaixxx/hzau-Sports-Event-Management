@@ -171,6 +171,7 @@ const getlasthaoma = async () => {
 
 <template>
   <div>
+    <h4>决赛成绩录入：</h4>
     <!-- 运动类别 -->
     <div class="leibie">
       <span>运动类别: </span>
@@ -203,7 +204,9 @@ const getlasthaoma = async () => {
       <span>请输入该项目晋级决赛人数:</span
       ><el-input v-model="manygolast" type="number" />
     </div>
-    <el-button type="primary" @click="getplayerinfo()">查询</el-button>
+    <el-button type="primary" @click="getplayerinfo()" class="chaxun"
+      >查询</el-button
+    >
     <el-button type="primary" @click="updataGrade()"
       >一键上传决赛运动员成绩</el-button
     >
@@ -226,9 +229,12 @@ const getlasthaoma = async () => {
         </template>
       </el-table-column>
     </el-table>
-    <el-button type="primary" @click="getlasthaoma()"
-      >一键分配决赛跑道号</el-button
-    >
+
+    <div class="paodaohao_box">
+      <el-button type="primary" @click="getlasthaoma()" class="paodaohao"
+        >一键分配决赛跑道号</el-button
+      >
+    </div>
   </div>
 </template>
 
@@ -249,5 +255,17 @@ const getlasthaoma = async () => {
   white-space: nowrap;
   align-items: center;
   margin-bottom: 15px;
+}
+.chaxun {
+  margin-left: 140px;
+  margin-right: 40px;
+}
+.paodaohao_box {
+  display: flex;
+  justify-content: end;
+}
+.paodaohao {
+  margin-right: 40px;
+  margin-top: 20px;
 }
 </style>

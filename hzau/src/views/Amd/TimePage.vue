@@ -32,6 +32,7 @@ const handleSubmit = async (row) => {
 }
 </script>
 <template>
+  <h4>学生可选择的志愿时间：</h4>
   <!-- 提供可选择的时间 -->
   <el-table :data="twoday" border style="width: 100%">
     <el-table-column prop="text" label="志愿时间" width="250">

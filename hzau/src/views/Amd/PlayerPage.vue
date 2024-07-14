@@ -133,6 +133,7 @@ const updataGrade = async () => {
 
 <template>
   <div>
+    <h4>初赛成绩录入：</h4>
     <!-- 运动类别 -->
     <div class="leibie">
       <span>运动类别: </span>
@@ -161,7 +162,9 @@ const updataGrade = async () => {
         />
       </el-select>
     </div>
-    <el-button type="primary" @click="getplayerinfo()">查询</el-button>
+    <el-button type="primary" @click="getplayerinfo()" class="chaxun"
+      >查询</el-button
+    >
     <el-button type="primary" @click="updataGrade()"
       >一键上传所有运动员成绩</el-button
     >
@@ -197,5 +200,9 @@ const updataGrade = async () => {
   align-items: center;
   line-height: 32px;
   margin-bottom: 10px;
+}
+.chaxun {
+  margin-left: 140px;
+  margin-right: 40px;
 }
 </style>
